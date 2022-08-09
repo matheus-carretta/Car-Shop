@@ -12,10 +12,10 @@ const carsMongooseSchema = new Schema<ICar>({
   seatsQty: Number,
 });
 
-class Cars extends MongoModel<ICar> {
+class CarsModel extends MongoModel<ICar> {
   constructor(model = mongooseCreateModel('Cars', carsMongooseSchema)) {
     super(model);
   }
 }
 
-export default Cars;
+export default CarsModel;
