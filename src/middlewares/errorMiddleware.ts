@@ -2,7 +2,8 @@ import { ErrorRequestHandler } from 'express';
 import { ZodError } from 'zod';
 import { ErrorTypes, errorCatalog } from '../errors/catalog';
 
-const errorMiddleware: ErrorRequestHandler = (err: Error | ZodError, 
+const errorMiddleware: ErrorRequestHandler = (
+  err: Error | ZodError, 
   _req,
   res,
   _next,
