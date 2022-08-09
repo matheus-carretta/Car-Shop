@@ -1,6 +1,5 @@
 import { expect } from 'chai';
 import * as sinon from 'sinon';
-import { ZodError } from 'zod';
 import CarsModel from '../../../models/Cars';
 import CarsService from '../../../services/Cars';
 import { carMock, carMockWithId } from '../../mocks/carsMock';
