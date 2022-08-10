@@ -3,7 +3,7 @@ import * as sinon from 'sinon';
 import CarsModel from '../../../models/Cars';
 import CarsService from '../../../services/Cars';
 import CarsController from '../../../controllers/Cars';
-import { carMock, carMockWithId } from '../../mocks/carsMock';
+import { carMock, carMockWithId, arrayCarMock } from '../../mocks/carsMock';
 import { Request, Response } from 'express';
 
 describe('Car Controller', () => {
@@ -15,6 +15,7 @@ describe('Car Controller', () => {
 
   before(async () => {
     sinon.stub(carService, 'create').resolves(carMockWithId);
+    sinon.stub(carService, 'read').resolves(arrayCarMock);
 
     res.status = sinon.stub().returns(res);
     res.json = sinon.stub().returns(res);
@@ -33,6 +34,14 @@ describe('Car Controller', () => {
       expect((res.status as sinon.SinonStub).calledWith(201)).to.be.true;
       expect((res.json as sinon.SinonStub).calledWith(carMockWithId)).to.be.true;
     });
+  })
 
+  describe('quando usa o método read', () => {
+    it('e encontra com sucesso', async () => {
+      await carController.read(req, res);
+
+      expect((res.status as sinon.SinonStub).calledWith(200)).to.be.true;
+      expect((res.json as sinon.SinonStub).calledWith(arrayCarMock)).to.be.true;
+    });
   })
 });
