@@ -33,6 +33,14 @@ class CarsService implements IService<ICar> {
 
     return car;
   }
+
+  public async delete(id: string):Promise<ICar | null> {
+    if (!isValidObjectId(id)) throw new Error(ErrorTypes.InvalidMongoId);
+    const car = await this._car.delete(id);
+    if (!car) throw new Error(ErrorTypes.EntityNotFound);
+
+    return car;
+  }
 }
 
 export default CarsService;
