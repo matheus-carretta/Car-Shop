@@ -25,6 +25,14 @@ class CarsService implements IService<ICar> {
 
     return car;
   }
+
+  public async update(id: string, payload: ICar):Promise<ICar | null> {
+    if (!isValidObjectId(id)) throw new Error(ErrorTypes.InvalidMongoId);
+    const car = await this._car.update(id, payload);
+    if (!car) throw new Error(ErrorTypes.EntityNotFound);
+
+    return car;
+  }
 }
 
 export default CarsService;
