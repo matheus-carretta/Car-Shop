@@ -39,3 +39,22 @@ export const arrayCarMock: ICar[] & { _id: string }[] = [
         doorsQty: 2
     }
 ]
+
+export const carMockForChange: ICar = {
+	model: "Ferrari Maranello",
+    year: 1963,
+    color: "red",
+    buyValue: 3500000,
+    seatsQty: 2,
+    doorsQty: 2
+};
+
+export const carMockForChangeWithId: ICar & { _id: string } = {
+	_id: "62f2dbbf99be89a8ca48bae0",
+    model: "Ferrari Maranello",
+    year: 1963,
+    color: "red",
+    buyValue: 3500000,
+    seatsQty: 2,
+    doorsQty: 2
+};
