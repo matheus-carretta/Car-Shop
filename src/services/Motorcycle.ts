@@ -20,10 +20,10 @@ class MotorcycleService implements IService<IMotorcycle> {
 
   public async readOne(id: string):Promise<IMotorcycle | null> {
     if (!isValidObjectId(id)) throw new Error(ErrorTypes.InvalidMongoId);
-    const car = await this._motorcycle.readOne(id);
-    if (!car) throw new Error(ErrorTypes.EntityNotFound);
+    const motorcycle = await this._motorcycle.readOne(id);
+    if (!motorcycle) throw new Error(ErrorTypes.EntityNotFound);
 
-    return car;
+    return motorcycle;
   }
 
   public async update(
