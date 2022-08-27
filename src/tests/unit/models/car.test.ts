@@ -11,7 +11,8 @@ describe('Car Model', () => {
     sinon.stub(Model, 'create').resolves(carMockWithId);
     sinon.stub(Model, 'find').resolves(arrayCarMock);
     sinon.stub(Model, 'findOne').resolves(carMockWithId);
-    sinon.stub(Model, 'findByIdAndUpdate').resolves(carMockForChangeWithId)
+    sinon.stub(Model, 'findByIdAndUpdate').resolves(carMockForChangeWithId);
+    sinon.stub(Model, 'findByIdAndRemove').resolves(carMockWithId);
   });
 
   after(()=>{
@@ -43,6 +44,13 @@ describe('Car Model', () => {
 		it('e encontra com sucesso', async () => {
 			const car = await carModel.update('62cf1fc6498565d94eba52cd', carMockForChange);
 			expect(car).to.be.deep.equal(carMockForChangeWithId);
+		});
+	})
+
+  describe('quando executa o método delete', () => {
+		it('e encontra com sucesso', async () => {
+			const car = await carModel.delete('62cf1fc6498565d94eba52cd');
+			expect(car).to.be.deep.equal(carMockWithId);
 		});
 	})
 });

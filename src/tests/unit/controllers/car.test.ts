@@ -18,6 +18,7 @@ describe('Car Controller', () => {
     sinon.stub(carService, 'read').resolves(arrayCarMock);
     sinon.stub(carService, 'readOne').resolves(carMockWithId);
     sinon.stub(carService, 'update').resolves(carMockWithId);
+    sinon.stub(carService, 'delete').resolves(carMockWithId);
 
     res.status = sinon.stub().returns(res);
     res.json = sinon.stub().returns(res);
@@ -64,7 +65,17 @@ describe('Car Controller', () => {
       await carController.update(req, res);
 
       expect((res.status as sinon.SinonStub).calledWith(200)).to.be.true;
-      expect((res.json as sinon.SinonStub).calledWith(arrayCarMock)).to.be.true;
+      expect((res.json as sinon.SinonStub).calledWith(carMockWithId)).to.be.true;
+    });
+  })
+
+  describe('quando usa o método delete', () => {
+    it('e deleta com sucesso', async () => {
+      req.params = { id: '62cf1fc6498565d94eba52cd' };
+      await carController.delete(req, res);
+
+      expect((res.status as sinon.SinonStub).calledWith(200)).to.be.true;
+      expect((res.json as sinon.SinonStub).calledWith(carMockWithId)).to.be.true;
     });
   })
 });

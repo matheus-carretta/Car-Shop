@@ -17,6 +17,7 @@ describe('Car Service', () => {
     .onCall(1).resolves(null);
     sinon.stub(carModel, 'update').onCall(0).resolves(carMockWithId)
     .onCall(1).resolves(null);
+    sinon.stub(carModel, 'delete').resolves(carMockWithId);
   });
 
   after(()=>{
@@ -77,6 +78,29 @@ describe('Car Service', () => {
     it('e o id é invalido', async () => {
       try {
         await carService.update('123456', carMock);
+      } catch (error: any) {
+        expect(error.message).to.be.deep.equal(ErrorTypes.InvalidMongoId);
+      }
+    });
+  })
+
+  describe('quando usa o método delete', () => {
+    it('e deleta com sucesso', async () => {
+      const deletedCar = await carService.delete('62cf1fc6498565d94eba52cd');
+      expect(deletedCar).to.be.deep.equal(carMockWithId);
+    });
+
+    it('e não encontra o id', async () => {
+      try {
+        await carService.delete('62cf1fc6498565d94eba52cx');
+      } catch (error: any) {
+        expect(error.message).to.be.deep.equal(ErrorTypes.EntityNotFound);
+      }
+    });
+
+    it('e o id é invalido', async () => {
+      try {
+        await carService.delete('123456');
       } catch (error: any) {
         expect(error.message).to.be.deep.equal(ErrorTypes.InvalidMongoId);
       }
