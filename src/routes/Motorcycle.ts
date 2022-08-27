@@ -22,5 +22,6 @@ route.put(
   motorcycleValidate,
   (req, res) => motorcycleController.update(req, res),
 );
+route.delete('/:id', (req, res) => motorcycleController.delete(req, res));
 
 export default route;

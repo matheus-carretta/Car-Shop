@@ -29,6 +29,12 @@ class MotorcycleController {
     const results = await this._service.update(id, req.body);
     return res.status(200).json(results);
   }
+
+  public async delete(req: Request, res: Response<IMotorcycle | null>) {
+    const { id } = req.params;
+    const results = await this._service.delete(id);
+    return res.status(204).json(results);
+  }
 }
 
 export default MotorcycleController;
