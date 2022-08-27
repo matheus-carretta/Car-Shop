@@ -93,7 +93,7 @@ describe('Car Service', () => {
 
     it('e não encontra o id', async () => {
       try {
-        await carService.delete('62cf1fc6498565d94eba52cx');
+        await carService.delete('62cf1fc6498565d94eba52cd');
       } catch (error: any) {
         expect(error.message).to.be.deep.equal(ErrorTypes.EntityNotFound);
       }
