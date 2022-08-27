@@ -31,18 +31,18 @@ class MotorcycleService implements IService<IMotorcycle> {
     payload: IMotorcycle,
   ):Promise<IMotorcycle | null> {
     if (!isValidObjectId(id)) throw new Error(ErrorTypes.InvalidMongoId);
-    const car = await this._motorcycle.update(id, payload);
-    if (!car) throw new Error(ErrorTypes.EntityNotFound);
+    const motorcycle = await this._motorcycle.update(id, payload);
+    if (!motorcycle) throw new Error(ErrorTypes.EntityNotFound);
 
-    return car;
+    return motorcycle;
   }
 
   public async delete(id: string):Promise<IMotorcycle | null> {
     if (!isValidObjectId(id)) throw new Error(ErrorTypes.InvalidMongoId);
-    const car = await this._motorcycle.delete(id);
-    if (!car) throw new Error(ErrorTypes.EntityNotFound);
+    const motorcycle = await this._motorcycle.delete(id);
+    if (!motorcycle) throw new Error(ErrorTypes.EntityNotFound);
 
-    return car;
+    return motorcycle;
   }
 }
 

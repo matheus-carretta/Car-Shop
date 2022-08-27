@@ -17,5 +17,10 @@ route.post(
 );
 route.get('/', (req, res) => motorcycleController.read(req, res));
 route.get('/:id', (req, res) => motorcycleController.readOne(req, res));
+route.put(
+  '/:id',
+  motorcycleValidate,
+  (req, res) => motorcycleController.update(req, res),
+);
 
 export default route;
